@@ -9,17 +9,18 @@ using Avalonia.Win32.Interop.Automation.Wrappers;
 
 namespace Avalonia.Win32.Automation.Wrappers
 {
-    internal unsafe class AutomationNodeComWrappers : ComWrappers
+    internal unsafe class RootAutomationNodeComWrappers : ComWrappers
     {
         private static readonly IntPtr s_IRawElementProviderSimpleVtable;
         private static readonly IntPtr s_IRawElementProviderSimple2Vtable;
         private static readonly IntPtr s_IRawElementProviderFragmentVtable;
         private static readonly IntPtr s_IRawElementProviderAdviseEventsVtable;
         private static readonly IntPtr s_IInvokeProviderVtable;
-        private static readonly ComInterfaceEntry* s_AutomationNodeEntries;
-        private static readonly int s_AutomationNodeEntriesLength;
+        private static readonly IntPtr s_IRawElementProviderFragmentRootVtable;
+        private static readonly ComInterfaceEntry* s_RootAutomationNodeEntries;
+        private static readonly int s_RootAutomationNodeEntriesLength;
 
-        static AutomationNodeComWrappers()
+        static RootAutomationNodeComWrappers()
         {
             GetIUnknownImpl(out IntPtr fpQueryInterface, out IntPtr fpAddRef, out IntPtr fpRelease);
 
@@ -102,11 +103,34 @@ namespace Avalonia.Win32.Automation.Wrappers
             }
 
             {
+                var index = 0;
+                var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
+                    typeof(AutomationNodeComWrappers),
+                    IntPtr.Size * (3 + 4 + 6 + 2));
+                vtable[index++] = fpQueryInterface;
+                vtable[index++] = fpAddRef;
+                vtable[index++] = fpRelease;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetProviderOptions;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, int, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetPatternProvider;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, int, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetPropertyValue;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetHostRawElementProvider;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, int, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.Navigate;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetRuntimeId;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr, int>)&IRawElementProviderFragmentRootWrapper.GetBoundingRectangle;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetEmbeddedFragmentRoots;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, int>)&IRawElementProviderFragmentRootWrapper.SetFocus;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetFragmentRoot;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, double, double, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.ElementProviderFromPoint;
+                vtable[index++] = (IntPtr)(delegate* unmanaged<IntPtr, IntPtr*, int>)&IRawElementProviderFragmentRootWrapper.GetFocus;
+                s_IRawElementProviderFragmentRootVtable = (IntPtr)vtable;
+            }
+
+            {
                 int index = 0;
-                s_AutomationNodeEntriesLength = 5;
+                s_RootAutomationNodeEntriesLength = 6;
                 var entries = (ComInterfaceEntry*)RuntimeHelpers.AllocateTypeAssociatedMemory(
                     typeof(AutomationNodeComWrappers),
-                    sizeof(ComInterfaceEntry) * s_AutomationNodeEntriesLength);
+                    sizeof(ComInterfaceEntry) * s_RootAutomationNodeEntriesLength);
                 entries[index].IID = IRawElementProviderSimple.IID_IRawElementProviderSimple;
                 entries[index++].Vtable = s_IRawElementProviderSimpleVtable;
                 entries[index].IID = IRawElementProviderSimple2.IID_IRawElementProviderSimple2;
@@ -117,16 +141,18 @@ namespace Avalonia.Win32.Automation.Wrappers
                 entries[index++].Vtable = s_IRawElementProviderAdviseEventsVtable;
                 entries[index].IID = IInvokeProvider.IID_IInvokeProvider;
                 entries[index++].Vtable = s_IInvokeProviderVtable;
-                s_AutomationNodeEntries = entries;
+                entries[index].IID = IRawElementProviderFragmentRoot.IID_IRawElementProviderFragmentRoot;
+                entries[index++].Vtable = s_IRawElementProviderFragmentRootVtable;
+                s_RootAutomationNodeEntries = entries;
             }
         }
 
         protected override unsafe ComInterfaceEntry* ComputeVtables(object obj, CreateComInterfaceFlags flags, out int count)
         {
-            if (obj is AutomationNode)
+            if (obj is RootAutomationNode)
             {
-                count = s_AutomationNodeEntriesLength;
-                return s_AutomationNodeEntries;
+                count = s_RootAutomationNodeEntriesLength;
+                return s_RootAutomationNodeEntries;
             }
 
             count = 0;
