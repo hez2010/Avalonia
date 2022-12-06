@@ -9,6 +9,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISelectionItemProvider
     {
+        public readonly static Guid IID_ISelectionItemProvider = new("2acad808-b2d4-452d-a407-91ff1ad167b2");
         void Select();
         void AddToSelection();
         void RemoveFromSelection();

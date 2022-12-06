@@ -276,6 +276,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRawElementProviderSimple
     {
+        public readonly static Guid IID_IRawElementProviderSimple = new("d6dd68d1-86fd-4332-8666-9abedea2d24c");
         ProviderOptions ProviderOptions { get; }
         [return: MarshalAs(UnmanagedType.IUnknown)]
         object? GetPatternProvider(int patternId);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -9,6 +10,7 @@ using System.Runtime.InteropServices;
 using Avalonia.Automation;
 using Avalonia.Automation.Peers;
 using Avalonia.Threading;
+using Avalonia.Win32.Automation.Wrappers;
 using Avalonia.Win32.Interop.Automation;
 using AAP = Avalonia.Automation.Provider;
 
@@ -25,6 +27,7 @@ namespace Avalonia.Win32.Automation
         IRawElementProviderAdviseEvents,
         IInvokeProvider
     {
+        private AutomationNodeComWrappers? _comWrappers;
         private static Dictionary<AutomationProperty, UiaPropertyId> s_propertyMap = new Dictionary<AutomationProperty, UiaPropertyId>()
         {
             { AutomationElementIdentifiers.BoundingRectangleProperty, UiaPropertyId.BoundingRectangle },
@@ -292,6 +295,12 @@ namespace Avalonia.Win32.Automation
             }
 
             return peer is object ? GetOrCreate(peer) : null;
+        }
+
+        public virtual IntPtr GetManagedWrapper()
+        {
+            _comWrappers ??= new AutomationNodeComWrappers();
+            return _comWrappers.GetOrCreateComInterfaceForObject(this, CreateComInterfaceFlags.None);
         }
 
         private static AutomationNode Create(AutomationPeer peer)

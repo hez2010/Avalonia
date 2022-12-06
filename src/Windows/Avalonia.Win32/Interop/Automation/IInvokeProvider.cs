@@ -14,6 +14,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IInvokeProvider
     {
+        public readonly static Guid IID_IInvokeProvider = new("54fcb24b-e18e-47a2-b4d3-eccbe77599a2");
         void Invoke();
     }
 }

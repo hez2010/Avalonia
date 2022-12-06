@@ -8,7 +8,8 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISelectionProvider
     {
-        IRawElementProviderSimple [] GetSelection();
+        public readonly static Guid IID_ISelectionProvider = new("fb8b03af-3bdf-48d4-bd36-1a65793be168");
+        IRawElementProviderSimple[] GetSelection();
         bool CanSelectMultiple { [return: MarshalAs(UnmanagedType.Bool)] get; }
         bool IsSelectionRequired { [return: MarshalAs(UnmanagedType.Bool)] get; }
     }

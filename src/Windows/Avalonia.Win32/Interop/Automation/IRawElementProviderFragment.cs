@@ -24,6 +24,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRawElementProviderFragment : IRawElementProviderSimple
     {
+        public readonly static Guid IID_IRawElementProviderFragment = new("f7063da8-8359-439c-9297-bbc5299a7d87");
         IRawElementProviderFragment? Navigate(NavigateDirection direction);
         int[]? GetRuntimeId();
         Rect BoundingRectangle { get; }

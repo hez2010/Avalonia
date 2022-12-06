@@ -8,6 +8,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRangeValueProvider
     {
+        public readonly static Guid IID_IRangeValueProvider = new("36dc7aef-33e6-4691-afe1-2be7274b3d33");
         void SetValue(double value);
         double Value { get; }
         bool IsReadOnly { [return: MarshalAs(UnmanagedType.Bool)] get; }

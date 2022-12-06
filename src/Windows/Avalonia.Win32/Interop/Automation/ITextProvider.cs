@@ -18,6 +18,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITextProvider
     {
+        public readonly static Guid IID_ITextProvider = new("3589c92c-63f3-4367-99bb-ada653b77cf2");
         ITextRangeProvider [] GetSelection();
         ITextRangeProvider [] GetVisibleRanges();
         ITextRangeProvider RangeFromChild(IRawElementProviderSimple childElement);

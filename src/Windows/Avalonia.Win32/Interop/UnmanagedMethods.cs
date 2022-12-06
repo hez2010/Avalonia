@@ -2370,6 +2370,15 @@ namespace Avalonia.Win32.Interop
             public IntPtr SetActiveAlt;
             public IntPtr MarkFullscreenWindow;
         }
+
+        [DllImport("OleAut32.dll")]
+        public extern static int SafeArrayGetElement(void* psa, int* rgIndices, void* pv);
+
+        [DllImport("OleAut32.dll")]
+        public extern static int SafeArrayGetLBound(void* psa, uint nDim, int* plLbound);
+
+        [DllImport("OleAut32.dll")]
+        public extern static int SafeArrayGetUBound(void* psa, uint nDim, int* plUbound);
     }
 
     [StructLayoutAttribute(LayoutKind.Sequential)]

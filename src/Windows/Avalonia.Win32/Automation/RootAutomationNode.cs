@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Avalonia.Automation.Peers;
 using Avalonia.Automation.Provider;
 using Avalonia.Platform;
+using Avalonia.Win32.Automation.Wrappers;
 using Avalonia.Win32.Interop.Automation;
 
 #nullable enable
@@ -14,6 +15,7 @@ namespace Avalonia.Win32.Automation
     internal class RootAutomationNode : AutomationNode,
         IRawElementProviderFragmentRoot
     {
+        private RootAutomationNodeComWrappers? _comWrappers;
         public RootAutomationNode(AutomationPeer peer)
             : base(peer)
         {
@@ -70,6 +72,12 @@ namespace Avalonia.Win32.Automation
                 Marshal.ThrowExceptionForHR(hr);
                 return result;
             }
+        }
+
+        public override IntPtr GetManagedWrapper()
+        {
+            _comWrappers ??= new RootAutomationNodeComWrappers();
+            return _comWrappers.GetOrCreateComInterfaceForObject(this, CreateComInterfaceFlags.None);
         }
     }
 }

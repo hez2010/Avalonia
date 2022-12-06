@@ -8,6 +8,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITransformProvider
     {
+        public readonly static Guid IID_ITransformProvider = new("6829ddc4-4f91-4ffa-b86f-bd3e2987cb4c");
         void Move( double x, double y );
         void Resize( double width, double height );
         void Rotate( double degrees );

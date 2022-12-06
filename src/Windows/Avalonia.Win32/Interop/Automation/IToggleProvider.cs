@@ -9,7 +9,8 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IToggleProvider
     {
-        void Toggle( );
+        public readonly static Guid IID_IToggleProvider = new("56d00bd0-c4f4-433c-a836-1a52a57e0892");
+        void Toggle();
         ToggleState ToggleState { get; }
     }
 }

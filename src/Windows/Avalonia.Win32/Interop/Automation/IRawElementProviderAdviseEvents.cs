@@ -9,6 +9,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRawElementProviderAdviseEvents : IRawElementProviderSimple
     {
+        public readonly static Guid IID_IRawElementProviderAdviseEvents = new("a407b27b-0f6d-4427-9292-473c7bf93258");
         void AdviseEventAdded(int eventId, int [] properties);
         void AdviseEventRemoved(int eventId, int [] properties);
     }

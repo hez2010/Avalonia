@@ -33,16 +33,14 @@ namespace Avalonia.Win32.Interop.Automation
         [RequiresUnreferencedCode("Requires .NET COM interop")]
         internal static object UiaGetReservedNotSupportedValue()
         {
-            object notSupportedValue;
-            CheckError(RawUiaGetReservedNotSupportedValue(out notSupportedValue));
+            CheckError(RawUiaGetReservedNotSupportedValue(out var notSupportedValue));
             return notSupportedValue;
         }
 
         [RequiresUnreferencedCode("Requires .NET COM interop")]
         internal static object UiaGetReservedMixedAttributeValue()
         {
-            object mixedAttributeValue;
-            CheckError(RawUiaGetReservedMixedAttributeValue(out mixedAttributeValue));
+            CheckError(RawUiaGetReservedMixedAttributeValue(out var mixedAttributeValue));
             return mixedAttributeValue;
         }
 

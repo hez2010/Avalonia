@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace Avalonia.Win32.Interop.Automation
@@ -23,8 +24,8 @@ namespace Avalonia.Win32.Interop.Automation
     [Guid("5347ad7b-c355-46f8-aff5-909033582f63")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITextRangeProvider
-
     {
+        public readonly static Guid IID_ITextRangeProvider = new("5347ad7b-c355-46f8-aff5-909033582f63");
         ITextRangeProvider Clone();
         [return: MarshalAs(UnmanagedType.Bool)]
         bool Compare(ITextRangeProvider range);

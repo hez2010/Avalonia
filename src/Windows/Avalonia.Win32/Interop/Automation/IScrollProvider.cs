@@ -9,6 +9,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IScrollProvider
     {
+        public readonly static Guid IID_IScrollProvider = new("b38b8077-1fc3-42a5-8cae-d40c2215055a");
         void Scroll(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
         void SetScrollPercent(double horizontalPercent, double verticalPercent);
         double HorizontalScrollPercent { get; }

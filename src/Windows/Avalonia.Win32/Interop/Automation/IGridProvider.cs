@@ -8,6 +8,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IGridProvider
     {
+        public readonly static Guid IID_IGridProvider = new("b17d6187-0907-464b-a168-0ef17a1572b1");
         IRawElementProviderSimple GetItem(int row, int column); 
         int RowCount { get; }
         int ColumnCount { get; }

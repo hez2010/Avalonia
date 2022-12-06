@@ -28,6 +28,7 @@ namespace Avalonia.Win32.Interop.Automation
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWindowProvider
     {
+        public readonly static Guid IID_IWindowProvider = new("987df77b-db06-4d77-8f8a-86a9c3bb90b9");
         void SetVisualState(WindowVisualState state);
         void Close();
         [return: MarshalAs(UnmanagedType.Bool)]
