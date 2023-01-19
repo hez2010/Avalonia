@@ -27,7 +27,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 4));
                 vtable[index++] = fpQueryInterface;
                 vtable[index++] = fpAddRef;
@@ -42,7 +42,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 1));
                 vtable[index++] = fpQueryInterface;
                 vtable[index++] = fpAddRef;
@@ -54,7 +54,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 4 + 6));
                 vtable[index++] = fpQueryInterface;
                 vtable[index++] = fpAddRef;
@@ -75,7 +75,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 4 + 2));
 
                 vtable[index++] = fpQueryInterface;
@@ -93,7 +93,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 1));
                 vtable[index++] = fpQueryInterface;
                 vtable[index++] = fpAddRef;
@@ -105,7 +105,7 @@ namespace Avalonia.Win32.Automation.Wrappers
             {
                 var index = 0;
                 var vtable = (IntPtr*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     IntPtr.Size * (3 + 4 + 6 + 2));
                 vtable[index++] = fpQueryInterface;
                 vtable[index++] = fpAddRef;
@@ -129,7 +129,7 @@ namespace Avalonia.Win32.Automation.Wrappers
                 int index = 0;
                 s_RootAutomationNodeEntriesLength = 6;
                 var entries = (ComInterfaceEntry*)RuntimeHelpers.AllocateTypeAssociatedMemory(
-                    typeof(AutomationNodeComWrappers),
+                    typeof(RootAutomationNodeComWrappers),
                     sizeof(ComInterfaceEntry) * s_RootAutomationNodeEntriesLength);
                 entries[index].IID = IRawElementProviderSimple.IID_IRawElementProviderSimple;
                 entries[index++].Vtable = s_IRawElementProviderSimpleVtable;
