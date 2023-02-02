@@ -112,8 +112,7 @@ namespace Avalonia.Collections
         /// <inheritdoc/>
         public void Add(TKey key, TValue value)
         {
-            _inner.Add(key, value);
-            NotifyAdd(key, value);
+            this[key] = value;
         }
 
         /// <inheritdoc/>
